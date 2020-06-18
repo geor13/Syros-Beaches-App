@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BeachApp</string>
+    <string name="access">Access</string>
+    <string name="type">Type</string>
+    <string name="organized">Organized</string>
+    <string name="distance">Distance</string>
+</resources>
