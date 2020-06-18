@@ -1,6 +1,8 @@
 package com.example.beachapp;
 
-public class SingleBeach {
+import java.io.Serializable;
+
+public class SingleBeach implements Serializable {
     private String name;
     private boolean access;
     private boolean organized;
