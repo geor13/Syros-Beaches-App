@@ -65,7 +65,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView_No" />
 
     <Switch
-        android:id="@+id/switch_Type_Both"
+        android:id="@+id/switch_Org_Both"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"

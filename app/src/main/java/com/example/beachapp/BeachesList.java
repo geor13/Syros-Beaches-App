@@ -2,6 +2,7 @@ package com.example.beachapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -22,6 +23,9 @@ public class BeachesList extends AppCompatActivity {
     private BeachesRes allBeaches;
     private ArrayList<SingleBeach> myBeaches;
     private BeachesAdapter adapter;
+    private String accessQuery;
+    private String typeQuery;
+    private String organizedQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,11 @@ public class BeachesList extends AppCompatActivity {
 
         myBeaches = new ArrayList<SingleBeach>();
         beachesList = (ListView)findViewById(R.id.beaches_list);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
+        accessQuery = sharedPreferences.getString(Keys.ACCESS_KEY, "");
+        typeQuery = sharedPreferences.getString(Keys.TYPE_KEY,"");
+        organizedQuery = sharedPreferences.getString(Keys.ORGANISED_KEY, "");
 
         generateRequest();
     }
@@ -50,13 +59,55 @@ public class BeachesList extends AppCompatActivity {
 
                         allBeaches = new Gson().fromJson(response, BeachesRes.class);
 
-                        for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-
-                            //IF WILL CHANGE ... GONNA SHOW THE ORGANIZED BEACHES
-                            if(allBeaches.getBeaches().get(i).isOrganized()){
-                                myBeaches.add(allBeaches.getBeaches().get(i));
-                            }
+                        switch (accessQuery){
+                            case "TRANSPORT":
+                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+                                    if(allBeaches.getBeaches().get(i).isAccess()){
+                                        myBeaches.add(allBeaches.getBeaches().get(i));
+                                    }
+                                }
+                            case "WALK":
+                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+                                    if(!allBeaches.getBeaches().get(i).isAccess()){
+                                        myBeaches.add(allBeaches.getBeaches().get(i));
+                                    }
+                                }
+                            case "BOTH_ACCESS":
+                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+                                        myBeaches.add(allBeaches.getBeaches().get(i));
+                                }
                         }
+
+                        switch(typeQuery){
+                            case "SANDY":
+                                for(int i = 0; i < myBeaches.size(); i++){
+                                    if(myBeaches.get(i).isType()){
+                                        myBeaches.remove(i);
+                                    }
+                                }
+                            case "ROCKY":
+                                for(int i = 0; i < myBeaches.size(); i++){
+                                    if(!myBeaches.get(i).isType()){
+                                        myBeaches.remove(i);
+                                    }
+                                }
+                        }
+
+                        switch (organizedQuery){
+                            case "ORGANIZED":
+                                for(int i = 0; i < myBeaches.size(); i++){
+                                    if(!myBeaches.get(i).isOrganized()){
+                                        myBeaches.remove(i);
+                                    }
+                                }
+                            case "UNORGANIZED":
+                                for(int i = 0; i < myBeaches.size(); i++){
+                                    if(myBeaches.get(i).isOrganized()){
+                                        myBeaches.remove(i);
+                                    }
+                                }
+                        }
+
 
                         adapter = new BeachesAdapter(BeachesList.this, myBeaches);
                         beachesList.setAdapter(adapter);
@@ -71,6 +122,8 @@ public class BeachesList extends AppCompatActivity {
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
     }
+     public void searching (boolean search){
+
+     }
 }
