@@ -3,13 +3,13 @@ package com.example.beachapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,5 +79,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
+        int passed = sharedPreferences.getInt(Keys.DISTANCE_KEY, 0);
+        Toast.makeText(MainActivity.this, "THE VALUE PASSED IS "+passed, Toast.LENGTH_LONG).show();
     }
 }

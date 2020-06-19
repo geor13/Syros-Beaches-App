@@ -3,6 +3,7 @@ package com.example.beachapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -23,9 +24,11 @@ public class BeachesList extends AppCompatActivity {
     private BeachesRes allBeaches;
     private ArrayList<SingleBeach> myBeaches;
     private BeachesAdapter adapter;
-    private String accessQuery;
-    private String typeQuery;
-    private String organizedQuery;
+    private boolean accessQuery;
+    private boolean typeQuery;
+    private boolean organizedQuery;
+    private int distanceQuery;
+    private Location locationA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +39,10 @@ public class BeachesList extends AppCompatActivity {
         beachesList = (ListView)findViewById(R.id.beaches_list);
 
         SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
-        accessQuery = sharedPreferences.getString(Keys.ACCESS_KEY, "");
-        typeQuery = sharedPreferences.getString(Keys.TYPE_KEY,"");
-        organizedQuery = sharedPreferences.getString(Keys.ORGANISED_KEY, "");
+        accessQuery = sharedPreferences.getBoolean(Keys.ACCESS_KEY, true);
+        typeQuery = sharedPreferences.getBoolean(Keys.TYPE_KEY,true);
+        organizedQuery = sharedPreferences.getBoolean(Keys.ORGANISED_KEY, true);
+        distanceQuery = sharedPreferences.getInt(Keys.DISTANCE_KEY, 0);
 
         generateRequest();
     }
@@ -58,56 +62,103 @@ public class BeachesList extends AppCompatActivity {
 //                        textView.setText("Response is: "+ response.substring(0,500));
 
                         allBeaches = new Gson().fromJson(response, BeachesRes.class);
-
-                        switch (accessQuery){
-                            case "TRANSPORT":
-                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-                                    if(allBeaches.getBeaches().get(i).isAccess()){
-                                        myBeaches.add(allBeaches.getBeaches().get(i));
-                                    }
-                                }
-                            case "WALK":
-                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-                                    if(!allBeaches.getBeaches().get(i).isAccess()){
-                                        myBeaches.add(allBeaches.getBeaches().get(i));
-                                    }
-                                }
-                            case "BOTH_ACCESS":
-                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-                                        myBeaches.add(allBeaches.getBeaches().get(i));
-                                }
-                        }
-
-                        switch(typeQuery){
-                            case "SANDY":
-                                for(int i = 0; i < myBeaches.size(); i++){
-                                    if(myBeaches.get(i).isType()){
-                                        myBeaches.remove(i);
-                                    }
-                                }
-                            case "ROCKY":
-                                for(int i = 0; i < myBeaches.size(); i++){
-                                    if(!myBeaches.get(i).isType()){
-                                        myBeaches.remove(i);
-                                    }
-                                }
-                        }
-
-                        switch (organizedQuery){
-                            case "ORGANIZED":
-                                for(int i = 0; i < myBeaches.size(); i++){
-                                    if(!myBeaches.get(i).isOrganized()){
-                                        myBeaches.remove(i);
-                                    }
-                                }
-                            case "UNORGANIZED":
-                                for(int i = 0; i < myBeaches.size(); i++){
-                                    if(myBeaches.get(i).isOrganized()){
-                                        myBeaches.remove(i);
-                                    }
-                                }
-                        }
-
+//
+//                        switch (accessQuery){
+//                            case "TRANSPORT":
+//                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+//                                    if(allBeaches.getBeaches().get(i).isAccess()){
+//                                        myBeaches.add(allBeaches.getBeaches().get(i));
+//                                    }
+//                                }
+//                                break;
+//                            case "WALK":
+//                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+//                                    if(!allBeaches.getBeaches().get(i).isAccess()){
+//                                        myBeaches.add(allBeaches.getBeaches().get(i));
+//                                    }
+//                                }
+//                                break;
+//                            case "BOTH_ACCESS":
+//                                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
+//                                        myBeaches.add(allBeaches.getBeaches().get(i));
+//                                }
+//                                break;
+//                        }
+//
+//                        switch(typeQuery){
+//                            case "SANDY":
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    if(myBeaches.get(i).isType()){
+//                                        myBeaches.remove(i);
+//                                    }
+//                                }
+//                                break;
+//                            case "ROCKY":
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    if(!myBeaches.get(i).isType()){
+//                                        myBeaches.remove(i);
+//                                    }
+//                                }
+//                                break;
+//                        }
+//
+//                        switch (organizedQuery){
+//                            case "ORGANIZED":
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    if(!myBeaches.get(i).isOrganized()){
+//                                        myBeaches.remove(i);
+//                                    }
+//                                }
+//                                break;
+//                            case "UNORGANIZED":
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    if(myBeaches.get(i).isOrganized()){
+//                                        myBeaches.remove(i);
+//                                    }
+//                                }
+//                                break;
+//                        }
+//
+//                        switch (distanceQuery){
+//                            case 0:
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    Location locationB = new Location("CURRENT_BEACH");
+//                                    locationB.setLongitude(myBeaches.get(i).getLongitude());
+//                                    locationB.setLatitude(myBeaches.get(i).getLatitude());
+//
+//                                    int distance = Math.round(locationA.distanceTo(locationB)/1000);
+//                                    if(distance > 2){
+//                                        myBeaches.remove(myBeaches.get(i));
+//                                    }
+//                                }
+//                                break;
+//                            case 5:
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    Location locationB = new Location("CURRENT_BEACH");
+//                                    locationB.setLongitude(myBeaches.get(i).getLongitude());
+//                                    locationB.setLatitude(myBeaches.get(i).getLatitude());
+//
+//                                    int distance = Math.round(locationA.distanceTo(locationB)/1000);
+//                                    if(distance > 5){
+//                                        myBeaches.remove(myBeaches.get(i));
+//                                    }
+//                                }
+//                                break;
+//                            case 10:
+//                                for(int i = 0; i < myBeaches.size(); i++){
+//                                    Location locationB = new Location("CURRENT_BEACH");
+//                                    locationB.setLongitude(myBeaches.get(i).getLongitude());
+//                                    locationB.setLatitude(myBeaches.get(i).getLatitude());
+//
+//                                    int distance = Math.round(locationA.distanceTo(locationB)/1000);
+//                                    if(distance > 10){
+//                                        myBeaches.add(myBeaches.get(i));
+//                                    }
+//                                }
+//                                break;
+//                        }
+                        Checker checker = new Checker(accessQuery, organizedQuery, typeQuery, distanceQuery,allBeaches );
+                        myBeaches = checker.calculator();
 
                         adapter = new BeachesAdapter(BeachesList.this, myBeaches);
                         beachesList.setAdapter(adapter);

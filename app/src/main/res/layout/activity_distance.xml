@@ -16,6 +16,7 @@
         android:layout_width="170dp"
         android:layout_height="63dp"
         android:max="2"
+        android:progress="0"
         android:scaleX="2"
         android:scaleY="2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +31,7 @@
         android:layout_marginStart="21dp"
         android:layout_marginBottom="10dp"
         android:inputType="phone"
-        android:text="5km"
+        android:text="2km"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -42,7 +43,7 @@
         android:layout_marginStart="156dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/questrial"
-        android:text="10km"
+        android:text="5km"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar2"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,7 +55,7 @@
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/questrial"
-        android:text="15km"
+        android:text="10km"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/seekBar2"
         app:layout_constraintEnd_toEndOf="parent" />

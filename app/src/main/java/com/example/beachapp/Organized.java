@@ -77,13 +77,13 @@ public class Organized extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(yesSwitch.isChecked()){
             Toast.makeText(Organized.this, "ORGANIZED CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ORGANISED_KEY,"ORGANIZED");
+            editor.putBoolean(Keys.ORGANISED_KEY,true);
         } else if(noSwitch.isChecked()){
             Toast.makeText(Organized.this, "UNORGANIZED CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ORGANISED_KEY,"UNORGANIZED");
+            editor.putBoolean(Keys.ORGANISED_KEY,false);
         }else if(bothOrganisedSwitch.isChecked()){
             Toast.makeText(Organized.this, "BOTH ORGANIZED CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ORGANISED_KEY,"BOTH_ORGANIZED");
+            editor.putBoolean(Keys.ORGANISED_KEY,true);
         }
 
         editor.commit();

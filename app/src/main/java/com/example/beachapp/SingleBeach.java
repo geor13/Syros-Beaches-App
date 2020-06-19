@@ -1,5 +1,7 @@
 package com.example.beachapp;
 
+import android.location.Location;
+
 import java.io.Serializable;
 
 public class SingleBeach implements Serializable {
@@ -9,8 +11,8 @@ public class SingleBeach implements Serializable {
     private boolean type;
     private String description;
     private boolean suppliesNear;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
 
     public String getName() {
         return name;
@@ -36,11 +38,25 @@ public class SingleBeach implements Serializable {
         return suppliesNear;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
+    }
+
+    public int getDistance(){
+        Location locationA = new Location("MIAOULI_SQUARE");
+        locationA.setLatitude(MiaouliSqr.LATITUDE);
+        locationA.setLongitude(MiaouliSqr.LONGTITUDE);
+
+        Location locationB = new Location("CURRENT_BEACH");
+        locationB.setLongitude(longitude);
+        locationB.setLatitude(latitude);
+
+        int distance = Math.round(locationA.distanceTo(locationB)/1000);
+
+        return distance;
     }
 }

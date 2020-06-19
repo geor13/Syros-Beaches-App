@@ -81,13 +81,13 @@ public class Access extends AppCompatActivity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(transportSwitch.isChecked()){
             Toast.makeText(Access.this, "TRANSPORT CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ACCESS_KEY,"TRANSPORT");
+            editor.putBoolean(Keys.ACCESS_KEY,true);
         } else if(walkSwitch.isChecked()){
             Toast.makeText(Access.this, "WALK CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ACCESS_KEY,"WALK");
+            editor.putBoolean(Keys.ACCESS_KEY,false);
         }else if(bothSwitch.isChecked()){
             Toast.makeText(Access.this, "BOTH CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.ACCESS_KEY,"BOTH_ACCESS");
+            editor.putBoolean(Keys.ACCESS_KEY,true);
         }
 
         editor.commit();

@@ -79,13 +79,13 @@ public class Type extends AppCompatActivity {
 
         if(sandySwitch.isChecked()){
             Toast.makeText(Type.this, "SANDY CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.TYPE_KEY,"SANDY");
+            editor.putBoolean(Keys.TYPE_KEY,false);
         } else if(rockySwitch.isChecked()){
             Toast.makeText(Type.this, "ROCKY CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.TYPE_KEY,"ROCKY");
+            editor.putBoolean(Keys.TYPE_KEY,true);
         }else if(bothTypesSwitch.isChecked()){
             Toast.makeText(Type.this, "BOTH CHECKED", Toast.LENGTH_LONG).show();
-            editor.putString(Keys.TYPE_KEY,"BOTH_TYPE");
+            editor.putBoolean(Keys.TYPE_KEY,true);
         }
 
         editor.commit();
