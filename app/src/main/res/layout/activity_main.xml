@@ -5,11 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <include
+        layout="@layout/top_bar"
+        android:id="@+id/TopBar"/>
 
     <ImageView
         android:id="@+id/imageView_Access"
-        android:layout_width="39dp"
-        android:layout_height="30dp"
+        android:layout_width="41dp"
+        android:layout_height="26dp"
         android:layout_marginStart="24dp"
         android:contentDescription="road"
         app:layout_constraintBottom_toBottomOf="@+id/textView_Access"
@@ -23,9 +26,9 @@
     <TextView
         android:id="@+id/textView_Access"
         android:layout_width="wrap_content"
-        android:layout_height="43dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="103dp"
+        android:layout_marginTop="160dp"
         android:fontFamily="@font/questrial"
         android:text="@string/access"
         android:textColor="#555454"
@@ -83,7 +86,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView_Access"
         app:layout_constraintTop_toTopOf="@+id/textView_Access"
-        app:layout_constraintVertical_bias="0.434"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/next" />
 
     <ImageView

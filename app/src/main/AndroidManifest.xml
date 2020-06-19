@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BeachDetail"></activity>
+        <activity android:name=".Distance"></activity>
+        <activity android:name=".Type" />
+        <activity android:name=".Organized" />
+        <activity android:name=".BeachDetail" />
         <activity android:name=".BeachesList" />
         <activity android:name=".Access" />
         <activity android:name=".MainActivity">

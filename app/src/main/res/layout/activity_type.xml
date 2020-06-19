@@ -4,36 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Access">
+    tools:context=".Type">
 
     <include
-        layout="@layout/top_bar_access"
-        android:id="@+id/TopBarAccess"/>
+        layout="@layout/top_bar_type"
+        android:id="@+id/TopBarType"/>
 
     <TextView
-        android:id="@+id/textView_Transport"
+        android:id="@+id/textView_SandyBeach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="160dp"
-        android:text="Transport"
+        android:fontFamily="@font/questrial"
+        android:text="Sandy Beach"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_Walk"
+        android:id="@+id/textView_RockyBeach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
         android:layout_marginTop="72dp"
-        android:text="Walk"
+        android:fontFamily="@font/questrial"
+        android:text="Rocky Beach"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Transport" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_SandyBeach" />
 
     <TextView
-        android:id="@+id/textView_Both_Access"
+        android:id="@+id/textView_Both_Type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -42,33 +44,34 @@
         android:text="Both"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_Walk" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_RockyBeach" />
 
     <Switch
-        android:id="@+id/switch_Transport"
+        android:id="@+id/switch_SandyBeach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_Transport"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_SandyBeach"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_Transport" />
+        app:layout_constraintTop_toTopOf="@+id/textView_SandyBeach" />
 
     <Switch
-        android:id="@+id/switch_Walk"
+        android:id="@+id/switch_RockyBeach"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_Walk"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_RockyBeach"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_Walk" />
+        app:layout_constraintTop_toTopOf="@+id/textView_RockyBeach" />
 
     <Switch
-        android:id="@+id/switch_Access_Both"
+        android:id="@+id/switch_Type_Both"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_Both_Access"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_Both_Type"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView_Both_Access" />
+        app:layout_constraintTop_toTopOf="@+id/textView_Both_Type" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
