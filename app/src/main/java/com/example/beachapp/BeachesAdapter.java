@@ -17,8 +17,8 @@ public class BeachesAdapter extends ArrayAdapter<SingleBeach> {
         super(context,0,beachlist);
     }
 
-    public View getView(int position, View convertView, ViewGroup parent){
-        SingleBeach beach = getItem(position);
+    public View getView(int position, View convertView, final ViewGroup parent){
+        final SingleBeach beach = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_list, parent, false);

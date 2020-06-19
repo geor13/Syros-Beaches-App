@@ -5,14 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class BeachesList extends AppCompatActivity {
     private ListView beachesList;
@@ -33,41 +36,41 @@ public class BeachesList extends AppCompatActivity {
 
     public void generateRequest(){
 
-        //GONNA USE RETROFIT LIBRARY
+        //GONNA USE VOLLEY !!!
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url ="http://project1.syros.aegean.gr/~dpsd16066/beach.json";
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://project1.syros.aegean.gr")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+// Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+//                        textView.setText("Response is: "+ response.substring(0,500));
 
-        //USING THE RETROFIT INTERFACE I BUILT
-        JsonPlaceholderApi placeholder = retrofit.create(JsonPlaceholderApi.class);
+                        allBeaches = new Gson().fromJson(response, BeachesRes.class);
 
-        Call<BeachesRes> call = placeholder.getAllBeaches("beach.json");
+                        for(int i = 0; i < allBeaches.getBeaches().size(); i++){
 
-        call.enqueue(new Callback<BeachesRes>() {
-            @Override
-            public void onResponse(Call<BeachesRes> call, Response<BeachesRes> response) {
-                if(!response.isSuccessful()){
-                    return;
-                }
+                            //IF WILL CHANGE ... GONNA SHOW THE ORGANIZED BEACHES
+                            if(allBeaches.getBeaches().get(i).isOrganized()){
+                                myBeaches.add(allBeaches.getBeaches().get(i));
+                            }
+                        }
 
-                allBeaches = response.body();
+                        adapter = new BeachesAdapter(BeachesList.this, myBeaches);
+                        beachesList.setAdapter(adapter);
 
-                for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-                    if(allBeaches.getBeaches().get(i).isOrganized()){
-                        myBeaches.add(allBeaches.getBeaches().get(i));
                     }
-                }
-                adapter = new BeachesAdapter(BeachesList.this, myBeaches);
-                beachesList.setAdapter(adapter);
-            }
-
+                }, new Response.ErrorListener() {
             @Override
-            public void onFailure(Call<BeachesRes> call, Throwable t) {
-
+            public void onErrorResponse(VolleyError error) {
+//                textView.setText("That didn't work!");
             }
         });
+
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
 
     }
 }
