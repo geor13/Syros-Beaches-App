@@ -6,9 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,9 @@ public class BeachesAdapter extends ArrayAdapter<SingleBeach> {
 
         TextView movieTitle = (TextView)convertView.findViewById(R.id.beach_name);
         movieTitle.setText(beach.getName());
+
+        ImageView imageBeach = (ImageView)convertView.findViewById(R.id.beach_image_list);
+        Glide.with(parent.getContext()).load(beach.getView()).into(imageBeach);
         return convertView;
     }
 }
