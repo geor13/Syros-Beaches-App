@@ -13,6 +13,7 @@ public class SingleBeach implements Serializable {
     private boolean suppliesNear;
     private double latitude;
     private double longitude;
+    private String view;
 
     public String getName() {
         return name;
@@ -44,6 +45,10 @@ public class SingleBeach implements Serializable {
 
     public double getLongitude() {
         return longitude;
+    }
+
+    public String getView() {
+        return view;
     }
 
     public int getDistance(){
