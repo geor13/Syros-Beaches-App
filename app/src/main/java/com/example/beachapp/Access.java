@@ -82,9 +82,11 @@ public class Access extends AppCompatActivity {
         if(transportSwitch.isChecked()){
             Toast.makeText(Access.this, "TRANSPORT CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ACCESS_KEY,true);
+            editor.putString(Keys.BOTH_ACCESS_KEY,"");
         } else if(walkSwitch.isChecked()){
             Toast.makeText(Access.this, "WALK CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ACCESS_KEY,false);
+            editor.putString(Keys.BOTH_ACCESS_KEY,"");
         }else if(bothSwitch.isChecked()){
             Toast.makeText(Access.this, "BOTH ACCESS CHECKED", Toast.LENGTH_SHORT).show();
             editor.putString(Keys.BOTH_ACCESS_KEY,"BOTH_ACCESS");

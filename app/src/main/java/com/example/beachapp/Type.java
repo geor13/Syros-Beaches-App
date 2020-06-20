@@ -76,13 +76,14 @@ public class Type extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-
         if(sandySwitch.isChecked()){
             Toast.makeText(Type.this, "SANDY CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.TYPE_KEY,false);
+            editor.putString(Keys.BOTH_TYPE_KEY,"");
         } else if(rockySwitch.isChecked()){
             Toast.makeText(Type.this, "ROCKY CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.TYPE_KEY,true);
+            editor.putString(Keys.BOTH_TYPE_KEY,"");
         }else if(bothTypesSwitch.isChecked()){
             Toast.makeText(Type.this, "BOTH TYPES CHECKED", Toast.LENGTH_SHORT).show();
             editor.putString(Keys.BOTH_TYPE_KEY,"BOTH_TYPES");

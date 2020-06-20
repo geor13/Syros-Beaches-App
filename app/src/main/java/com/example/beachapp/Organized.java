@@ -78,9 +78,11 @@ public class Organized extends AppCompatActivity {
         if(yesSwitch.isChecked()){
             Toast.makeText(Organized.this, "ORGANIZED CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ORGANISED_KEY,true);
+            editor.putString(Keys.BOTH_ORGANIZED_KEY,"");
         } else if(noSwitch.isChecked()){
             Toast.makeText(Organized.this, "UNORGANIZED CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ORGANISED_KEY,false);
+            editor.putString(Keys.BOTH_ORGANIZED_KEY,"");
         }else if(bothOrganisedSwitch.isChecked()){
             Toast.makeText(Organized.this, "BOTH ORGANIZED CHECKED", Toast.LENGTH_SHORT).show();
             editor.putString(Keys.BOTH_ORGANIZED_KEY,"BOTH_ORGANIZED");
