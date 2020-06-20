@@ -78,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
-        int passed = sharedPreferences.getInt(Keys.DISTANCE_KEY, 0);
-        Toast.makeText(MainActivity.this, "THE VALUE PASSED IS "+passed, Toast.LENGTH_LONG).show();
+//
+//        SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
+//        int passed = sharedPreferences.getInt(Keys.DISTANCE_KEY, 0);
+//        Toast.makeText(MainActivity.this, "THE VALUE PASSED IS "+passed, Toast.LENGTH_LONG).show();
     }
 }

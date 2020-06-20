@@ -21,13 +21,13 @@ public class Checker {
         this.allBeaches = allBeaches;
     }
 
-    public ArrayList<SingleBeach> calculator(){
+    public ArrayList<SingleBeach> calculator(String accessBoth, String typeBoth, String organizedBoth){
         ArrayList<SingleBeach> myBeach = new ArrayList<>();
 
         for(int i = 0; i < allBeaches.getBeaches().size(); i++){
-            if(allBeaches.getBeaches().get(i).isAccess() == access
-                    && allBeaches.getBeaches().get(i).isOrganized() == organized
-                    && allBeaches.getBeaches().get(i).isType() == type
+            if((allBeaches.getBeaches().get(i).isAccess() == access || accessBoth.equals("BOTH_ACCESS"))
+                    && (allBeaches.getBeaches().get(i).isOrganized() == organized || organizedBoth.equals("BOTH_ORGANIZED"))
+                    && (allBeaches.getBeaches().get(i).isType() == type || typeBoth.equals("BOTH_TYPES"))
                     && allBeaches.getBeaches().get(i).getDistance() <= requestDistance) {
                 myBeach.add(allBeaches.getBeaches().get(i));
             }

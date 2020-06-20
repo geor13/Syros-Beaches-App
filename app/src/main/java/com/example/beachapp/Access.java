@@ -80,14 +80,14 @@ public class Access extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Keys.SHARED_PREFS, this.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if(transportSwitch.isChecked()){
-            Toast.makeText(Access.this, "TRANSPORT CHECKED", Toast.LENGTH_LONG).show();
+            Toast.makeText(Access.this, "TRANSPORT CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ACCESS_KEY,true);
         } else if(walkSwitch.isChecked()){
-            Toast.makeText(Access.this, "WALK CHECKED", Toast.LENGTH_LONG).show();
+            Toast.makeText(Access.this, "WALK CHECKED", Toast.LENGTH_SHORT).show();
             editor.putBoolean(Keys.ACCESS_KEY,false);
         }else if(bothSwitch.isChecked()){
-            Toast.makeText(Access.this, "BOTH CHECKED", Toast.LENGTH_LONG).show();
-            editor.putBoolean(Keys.ACCESS_KEY,true);
+            Toast.makeText(Access.this, "BOTH ACCESS CHECKED", Toast.LENGTH_SHORT).show();
+            editor.putString(Keys.BOTH_ACCESS_KEY,"BOTH_ACCESS");
         }
 
         editor.commit();

@@ -44,7 +44,7 @@ public class Distance extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 userValue = progress;
-                Toast.makeText(Distance.this, "THE VALUE IS "+userValue, Toast.LENGTH_LONG).show();
+//                Toast.makeText(Distance.this, "THE VALUE IS "+userValue, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -69,13 +69,16 @@ public class Distance extends AppCompatActivity {
         switch (userValue){
             case 1:
                 editor.putInt(Keys.DISTANCE_KEY,5);
+                Toast.makeText(Distance.this, "THE DISTANCE IS "+5+" KM", Toast.LENGTH_SHORT).show();
                 break;
 
             case 2:
                 editor.putInt(Keys.DISTANCE_KEY, 10);
+                Toast.makeText(Distance.this, "THE DISTANCE IS "+10+" KM", Toast.LENGTH_SHORT).show();
                 break;
             case 0:
                 editor.putInt(Keys.DISTANCE_KEY, 2);
+                Toast.makeText(Distance.this, "THE DISTANCE IS "+2+" KM", Toast.LENGTH_SHORT).show();
                 break;
         }
 
