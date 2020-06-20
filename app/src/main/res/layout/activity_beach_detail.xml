@@ -6,34 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".BeachDetail">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <include
+        layout="@layout/detail_top_bar"
+        android:id="@+id/DetailTopBar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/name_beach"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="titlos"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/DetailTopBar">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/details_beach"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="details"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:src="@mipmap/ic_launcher"
-        android:id="@+id/image_testing"/>
+            <TextView
+                android:id="@+id/textView_Description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/questrial"
+                android:lineSpacingExtra="8sp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView_PhotoBeach"
+                app:layout_constraintStart_toStartOf="@+id/imageView_PhotoBeach"
+                app:layout_constraintTop_toBottomOf="@+id/imageView_PhotoBeach" />
 
+            <ImageView
+                android:id="@+id/imageView_PhotoBeach"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:layout_marginEnd="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
+            <TextView
+                android:id="@+id/GoToMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView_Description"
+                android:textAlignment="center"
+                android:textSize="28sp"
+                android:text="Other Options"
+                android:fontFamily="@font/questrial"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="100dp"
+                android:textColor="#9DD8D9"
+                android:textStyle="bold"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
